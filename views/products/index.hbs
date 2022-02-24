@@ -4,13 +4,13 @@
       {{#each viewData.products}}
         <div class="col-md-4 col-lg-3 mb-2">
           <div class="card">
-            <img src="/img/{{image}}"
-                 alt="{{description}}"
+            <img src="/img/{{getImage}}"
+                 alt="{{getDescription}}"
                  class="card-img-top img-card">
             <div class="card-body text-center">
-              <a href="/products/{{id}}"
+              <a href="/products/{{getId}}"
                  class="btn bg-primary text-white">
-                {{name}}
+                {{getName}}
               </a>
             </div>
           </div>
