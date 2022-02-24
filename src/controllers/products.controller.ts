@@ -6,7 +6,7 @@ export class ProductsController {
   constructor (private readonly productsService: ProductsService) {}
 
   @Get("/")
-  @Render("products/index")
+  @Render("products/index.hbs")
   async index () {
     const viewData = [];
     viewData["title"] = "Products - Online Store";
