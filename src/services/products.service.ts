@@ -1,7 +1,7 @@
-import { Injectable }       from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository }       from "typeorm";
-import { Product }          from "../models/product.entity";
+import { Repository } from "typeorm";
+import { Product } from "../models/product.entity";
 
 @Injectable()
 export class ProductsService {
@@ -17,5 +17,9 @@ export class ProductsService {
 
   createOrUpdate (product: Product): Promise<Product> {
     return this.productsRepository.save(product);
+  }
+
+  async remove (id: string): Promise<void> {
+    await this.productsRepository.delete(id);
   }
 }

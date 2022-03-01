@@ -1,0 +1,81 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Edit Product
+      </div>
+
+      <div class="card-body">
+        {{#with viewData.product}}
+          <form method="post"
+                action="/admin/products/{{getId}}/update"
+                enctype="multipart/form-data">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3 row">
+                  <label for="name"
+                         class="col-lg-2 col-md-6 col-sm-12 col-form-label">Name:</label>
+                  <div class="col-lg-10 col-md-6 col-sm-12">
+                    <input id="name"
+                           name="name"
+                           type="text"
+                           class="form-control"
+                           value="{{getName}}"
+                           required>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3 row">
+                  <label for="price"
+                         class="col-lg-2 col-md-6 col-sm-12 col-form-label">Price:</label>
+                  <div class="col-lg-10 col-md-6 col-sm-12">
+                    <input id="price"
+                           name="price"
+                           type="number"
+                           class="form-control"
+                           value="{{getPrice}}"
+                           required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="mb-3 row">
+                  <label for="image"
+                         class="col-lg-2 col-md-6 col-sm-12 col-form-label">Image:</label>
+                  <div class="col-lg-10 col-md-6 col-sm-12">
+                    <input id="image"
+                           name="image"
+                           type="file"
+                           class="form-control">
+                  </div>
+                </div>
+
+                <div class="col">
+                  &nbsp;
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description"
+                     class="form-label">Description:</label>
+              <textarea name="description"
+                        id="description"
+                        rows="3"
+                        class="form-control"
+                        required>{{getDescription}}</textarea>
+            </div>
+
+            <button class="btn btn-primary"
+                    type="submit">Edit
+            </button>
+          </form>
+        {{/with}}
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}

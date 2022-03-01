@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Redirect, Render, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Redirect, Render, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Product } from "../../models/product.entity";
 import { ProductsService } from "../../services/products.service";
@@ -28,5 +28,36 @@ export class AdminProductsController {
     newProduct.setPrice(body.price);
     newProduct.setImage(file.filename);
     await this.productsService.createOrUpdate(newProduct);
+  }
+
+  @Post("/:id")
+  @Redirect("/admin/products")
+  remove (@Param("id") id: string) {
+    return this.productsService.remove(id);
+  }
+
+  @Get("/:id")
+  @Render("admin/products/edit")
+  async edit (@Param("id") id: string) {
+    const viewData = [];
+    viewData["title"] = "Admin Page - Edit Product - Online Store";
+    viewData["product"] = await this.productsService.findOne(id);
+    return {
+      viewData,
+    };
+  }
+
+  @Post("/:id/update")
+  @UseInterceptors(FileInterceptor("image", { dest: "./public/uploads" }))
+  @Redirect("/admin/products")
+  async update (@Body() body, @UploadedFile() file: Express.Multer.File, @Param("id") id: string) {
+    const product = await this.productsService.findOne(id);
+    product.setName(body.name);
+    product.setDescription(body.description);
+    product.setPrice(body.price);
+    if (file) {
+      product.setImage(file.filename);
+    }
+    await this.productsService.createOrUpdate(product);
   }
 }
