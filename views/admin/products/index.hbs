@@ -6,6 +6,12 @@
       </div>
 
       <div class="card-body">
+        {{#if flashErrors }}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+
         <form method="post"
               action="/admin/products/store"
               enctype="multipart/form-data">

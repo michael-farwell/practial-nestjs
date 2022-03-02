@@ -6,6 +6,12 @@
       </div>
 
       <div class="card-body">
+        {{#if flashErrors }}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+
         {{#with viewData.product}}
           <form method="post"
                 action="/admin/products/{{getId}}/update"
