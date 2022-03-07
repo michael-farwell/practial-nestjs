@@ -10,9 +10,14 @@ export class Order {
 
   @CreateDateColumn() date: Date;
 
-  @ManyToOne(() => User, (user) => user.orders) user: User;
+  @ManyToOne(() => User,
+    (user) => user.orders)
+  user: User;
 
-  @OneToMany(() => Item, (item) => item.order) items: Item[];
+  @OneToMany(() => Item,
+    (item) => item.order,
+    { cascade: ["insert"] })
+  items: Item[];
 
   getId (): number {
     return this.id;

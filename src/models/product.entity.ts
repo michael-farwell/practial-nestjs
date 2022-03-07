@@ -13,7 +13,9 @@ export class Product {
 
   @Column() price: number;
 
-  @OneToMany(() => Item, (item) => item.product) items: Item[];
+  @OneToMany(() => Item,
+    (item) => item.product)
+  items: Item[];
 
   getId (): number {
     return this.id;

@@ -10,9 +10,13 @@ export class Item {
 
   @Column() price: number;
 
-  @ManyToOne(() => Order, (order) => order.items) order: Order;
+  @ManyToOne(() => Order,
+    (order) => order.items)
+  order: Order;
 
-  @ManyToOne(() => Product, (product) => product.items) product: Product;
+  @ManyToOne(() => Product,
+    (product) => product.items)
+  product: Product;
 
   getId (): number {
     return this.id;

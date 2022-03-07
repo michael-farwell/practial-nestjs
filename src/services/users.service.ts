@@ -14,6 +14,14 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
+  findOne (id: string): Promise<User> {
+    return this.usersRepository.findOne(id);
+  }
+
+  updateBalance (id: number, balance: number) {
+    return this.usersRepository.update(id, { balance });
+  }
+
   async login (email: string, password: string): Promise<User> {
     const user = await this.usersRepository.findOne({ email: email });
     if (user) {

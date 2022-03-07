@@ -15,7 +15,9 @@ export class User {
 
   @Column() balance: number;
 
-  @OneToMany(() => Order, (order) => order.user) orders: Order[];
+  @OneToMany(() => Order,
+    (order) => order.user)
+  orders: Order[];
 
   getId (): number {
     return this.id;
