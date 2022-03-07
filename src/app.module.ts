@@ -1,5 +1,6 @@
 import { Global, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { AccountModule } from "./account/account.module";
 import { AdminModule } from "./admin/admin.module";
 import { AppController } from "./app.controller";
 import { AuthModule } from "./auth/auth.module";
@@ -17,6 +18,7 @@ import { UsersService } from "./services/users.service";
   imports: [
     TypeOrmModule.forRoot(),
     TypeOrmModule.forFeature([Product, User, Order]),
+    AccountModule,
     AdminModule,
     AuthModule,
     CartModule,
